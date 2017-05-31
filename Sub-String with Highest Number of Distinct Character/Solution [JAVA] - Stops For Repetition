@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class distinctChar {
+	static Scanner input = new Scanner(System.in);
+	
+	public static int getDistinctChar(String str){
+    	ArrayList<Character> list = new ArrayList<>();
+    	String longest = "";
+    	int indexChar = 0, index, maxSubStringLen = 0;
+    	char ch;
+ 
+    	for(index = 0; index < str.length(); index++){
+    		ch = str.charAt(index);
+
+    		while(list.contains(ch)){
+    			list.remove(Character.valueOf(str.charAt(indexChar)));
+    			indexChar++;
+    		}
+    		
+    		list.add(ch);
+    		
+    		if(maxSubStringLen < index - indexChar + 1){
+    			maxSubStringLen = index - indexChar + 1;
+    			longest = str.substring(indexChar, index + 1);
+    		}
+    	}
+    	
+    	return longest.length();
+     
+    }
+	
+	public static void main(String[] args) {
+		int testCase = input.nextInt(), index;
+
+		for(index = 1; index <= testCase; index++){
+			String str = input.next();
+			System.out.println(getDistinctChar(str));
+		}
+	}
+}
