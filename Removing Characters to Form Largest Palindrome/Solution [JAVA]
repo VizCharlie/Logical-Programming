@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class largestPalindrome{
+  static int output;
+  
+  public static void getNumberOfChar(String str){
+    int index, elementCounter = 0;
+    ArrayList<Character> list = new ArrayList<Character>();
+
+    str = str.toLowerCase().trim();
+    
+    for(index = 0; index < str.length(); index++){
+      if(list.contains(str.charAt(index))){
+        list.remove(Character.valueOf(str.charAt(index)));
+        elementCounter--;
+      }else{
+        list.add(str.charAt(index));
+        elementCounter++;
+      }
+    }
+
+    if(elementCounter == str.length()){
+      output = -1;
+    }else
+      output = elementCounter - 1;
+      
+     System.out.println(output);
+  }
+  
+	public static void main(String[] args){
+		Scanner input = new Scanner(System.in);
+	  String str = input.next();
+    
+    getNumberOfChar(str);
+	}
+  
+}
