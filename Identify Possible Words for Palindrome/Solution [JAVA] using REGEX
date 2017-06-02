@@ -1,0 +1,36 @@
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+	public static String getMatchedPattern(String str, String pat){
+		String ch = "_", rep = "(.)", result = "";
+		String[] string = str.split(":");
+        int index;
+        
+        Pattern repPat = Pattern.compile(ch);
+        Matcher match = repPat.matcher(pat);
+        pat = match.replaceAll(rep);
+        
+        Pattern patt = Pattern.compile(pat);
+        Matcher matchPat = patt.matcher(str);
+        
+        for(index = 0; index < string.length; index++){
+        	if(matchPat.find()){
+            	if(result.isEmpty()){
+            		result += matchPat.group(0);
+            	}else
+            		result += ":" + matchPat.group(0);
+            }
+        }
+        
+        return result;
+	}
+	
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String pat = input.nextLine(), str = input.nextLine();
+        
+        System.out.println(getMatchedPattern(str, pat));
+    }
+}
