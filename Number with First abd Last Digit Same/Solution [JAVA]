@@ -1,0 +1,29 @@
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+	public static int getCount(int start, int end){
+		int count = 0, index;
+		String indexStr;
+		
+		for(index = start ; index <= end; index++){
+			indexStr = Integer.toString(index);
+			if(indexStr.charAt(0) == indexStr.charAt(indexStr.length() - 1)){
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int testCase = input.nextInt();
+        
+        while(testCase-- > 0){
+        	int  start = input.nextInt(), end = input.nextInt();
+        	System.out.println(getCount(start, end));
+        }
+    }
+}
