@@ -9,8 +9,8 @@ public class pourWater {
 		if(glassRow[glassNo] > 1.0){
 			++level;
 			extraUnit = glassRow[glassNo] - 1.0;
-			pourInGlass( glassRow, glassNo + level + 1, extraUnit / 2 ,level);
-			pourInGlass( glassRow, glassNo + level + 2, extraUnit / 2 ,level);
+			pourInGlass( glassRow, glassNo + level + 1, extraUnit / 2, level);
+			pourInGlass( glassRow, glassNo + level + 2, extraUnit / 2, level);
 			glassRow[glassNo] = 1.0;
 	    }
 	}
@@ -39,7 +39,5 @@ public class pourWater {
 			}else
 				System.out.println("WRONG INPUT");
 		}
-	
 	}
-
 }
