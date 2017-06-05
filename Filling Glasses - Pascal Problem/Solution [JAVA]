@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class pourWater {
+	static void pourInGlass(double glassRow[], int glassNo, double unit, int level){
+		double extraUnit;
+		
+		glassRow[glassNo] += unit;
+		
+		if(glassRow[glassNo] > 1.0){
+			++level;
+			extraUnit = glassRow[glassNo] - 1.0;
+			pourInGlass( glassRow, glassNo + level + 1, extraUnit / 2 ,level);
+			pourInGlass( glassRow, glassNo + level + 2, extraUnit / 2 ,level);
+			glassRow[glassNo] = 1.0;
+	    }
+	}
+	
+	static double getWater(double[] glassRow, int glassNo, double unit, int level){
+		pourInGlass(glassRow, 0, unit, level);
+		return glassRow[glassNo - 1];
+	}
+	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		int testCase = input.nextInt();
+		
+		while(testCase-- > 0){
+			double unit = input.nextInt();
+			int row = input.nextInt(), glass = input.nextInt(), level = -1, glassNo = 0, index;
+			double[] glassRow;
+			
+			if(glass <= row){
+				for(index = row - 1; index > 0; index--){
+					glassNo += index;
+				}
+				
+				glassRow = new double[glassNo + row];
+				System.out.println(getWater(glassRow, glassNo + glass, unit, level));
+			}else
+				System.out.println("WRONG INPUT");
+		}
+	
+	}
+
+}
