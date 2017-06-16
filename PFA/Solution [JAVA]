@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+public class PFA {
+	static int[][] matrix;
+	static int rowIndex, colIndex, row, col, previousRow = 0, previousCol = 0;
+	
+	public static void getExit(){
+		for(rowIndex = 0 ; rowIndex <= row; ){
+			for(colIndex = 1; colIndex <= col; ){
+				if(rowIndex == -1 || rowIndex == row || colIndex == -1 || colIndex == col){
+					System.out.println(previousRow + " " + previousCol);
+					return;
+				}else if(rowIndex - previousRow == 0 && colIndex - previousCol == 1){
+					if(matrix[rowIndex][colIndex] == 0){
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						colIndex++;
+					}else{
+						matrix[rowIndex][colIndex] = 0;
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						rowIndex++;
+					}
+				}else if(rowIndex - previousRow == 1 && colIndex - previousCol == 0){
+					if(matrix[rowIndex][colIndex] == 0){
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						rowIndex++;
+					}else{
+						matrix[rowIndex][colIndex] = 0;
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						colIndex--;
+					}
+				}else if(rowIndex - previousRow == 0 && colIndex - previousCol == -1){
+					if(matrix[rowIndex][colIndex] == 0){
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						colIndex--;
+					}else{
+						matrix[rowIndex][colIndex] = 0;
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						rowIndex--;
+					}
+				}else if(rowIndex - previousRow == -1 && colIndex - previousCol == 0){
+					if(matrix[rowIndex][colIndex] == 0){
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						rowIndex--;
+					}else{
+						matrix[rowIndex][colIndex] = 0;
+						previousRow = rowIndex;
+						previousCol = colIndex;
+						colIndex++;
+					}
+				}
+				
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+//		int testCase = input.nextInt();
+		
+//		while(testCase-- > 0){
+			row = input.nextInt(); col = input.nextInt();
+			matrix = new int[row][col];
+			for(rowIndex = 0 ; rowIndex < row; rowIndex++){
+				for(colIndex = 0; colIndex < col; colIndex++){
+					matrix[rowIndex][colIndex] = input.nextInt();
+				}
+			}
+			
+//		}
+		
+		getExit();
+	}
+
+}
