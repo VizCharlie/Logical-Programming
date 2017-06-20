@@ -6,15 +6,14 @@ public class DayOfDate {
 	
 	public static void main(String[] args) throws ParseException{
 		Scanner input = new Scanner(System.in);
-		int testCase = input.nextInt();
-		input.nextLine();
-		String strDate = input.nextLine();
+		int testCase = input.nextInt(), date = input.nextInt(), month = input.nextInt(), year = input.nextInt();
+		String strDate = String.valueOf(date) + String.valueOf(month) + String.valueOf(year);
 		
 		while(testCase-- > 0){
-			Date date = new SimpleDateFormat("dd mm yyyy").parse(strDate);
+			Date orgDate = new SimpleDateFormat("ddmmyyyy").parse(strDate);
 			SimpleDateFormat day = new SimpleDateFormat("EEEEEE");
 			
-			System.out.println(day.format(date));
+			System.out.println(day.format(orgDate));
 		}
 	}
 }
